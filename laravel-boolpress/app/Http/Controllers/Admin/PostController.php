@@ -24,9 +24,9 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create() {
+        return view("admin.posts.create");
+        
     }
 
     /**
@@ -35,9 +35,16 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request) {
+        $data = $request->validate([
+            "title" => "required|min:5",
+            "content" => "required|min:20"
+        ]);
+
+        $post = new Post();
+        $post->fill($data);
+
+        $post->save();
     }
 
     /**
