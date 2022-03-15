@@ -45,6 +45,8 @@ class PostController extends Controller
         $post->fill($data);
 
         $post->save();
+
+        return redirect()->route("admin.posts.index");
     }
 
     /**
