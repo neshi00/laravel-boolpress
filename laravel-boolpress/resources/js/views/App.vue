@@ -1,5 +1,5 @@
 <template>
-    <h1>Hello Vue in Laravel senza blade che al mercato mio padre comprò</h1>
+    <h1>Hello Vue</h1>
 </template>
 
 <script>
