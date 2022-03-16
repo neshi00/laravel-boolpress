@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Post;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -25,7 +26,9 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view("admin.posts.create");
+        $tags = Tag::all();
+
+        return view("admin.posts.create", compact("tags"));
         
     }
 
@@ -72,7 +75,14 @@ class PostController extends Controller
 
         $post = Post::findOrFail($id);
 
-        return view("admin.posts.edit", compact("post"));
+        $tags = Tag::all();
+
+
+
+        return view("admin.posts.edit", [
+            "post" => $post,
+            "tags" => $tags,
+        ]);
     }
 
     /**

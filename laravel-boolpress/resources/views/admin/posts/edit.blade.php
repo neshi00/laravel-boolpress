@@ -30,7 +30,23 @@
             </textarea>
         </div>
 
-        <input type="submit" value="salva post">
+        <div>
+            <label>Tag</label>
+        </div>
+
+        @foreach ($tags as $tag)
+        <span>
+            <input type="checkbox" 
+                value="{{ $tag->id }}"
+                id="tag_{{ $tag->id }}"
+                name="tags[]">
+            <label id="tag_{{ $tag->id }}">{{ $tag->name }}</label>
+        </span>
+        @endforeach
+
+        <div>
+            <input type="submit" value="salva post">
+        </div>
     
     
     
