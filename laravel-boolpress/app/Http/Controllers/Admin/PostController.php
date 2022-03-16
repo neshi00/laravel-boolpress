@@ -41,13 +41,16 @@ class PostController extends Controller
     public function store(Request $request) {
         $data = $request->validate([
             "title" => "required|min:5",
-            "content" => "required|min:20"
+            "content" => "required|min:20",
+            "tags" => "nullable"
         ]);
 
         $post = new Post();
         $post->fill($data);
 
         $post->save();
+
+        $post->tags()->attach($data["tags"]);
 
         return redirect()->route("admin.posts.index");
     }
@@ -97,6 +100,10 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
 
         $post->update($data);
+
+        if (key_exists("tags", $data)) {
+            $post->tags()->sync($data["tags"]);
+        }
 
         return redirect()->route("admin.posts.show", $id);
     }

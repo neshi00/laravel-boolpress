@@ -39,7 +39,10 @@
             <input type="checkbox" 
                 value="{{ $tag->id }}"
                 id="tag_{{ $tag->id }}"
-                name="tags[]">
+                name="tags[]"
+                {{-- se il post contiene il tag che sto ciclando segna checked altrimenti nulla --}}
+                {{ $post->tags->contains($tag) ? "checked" : "" }}
+                >
             <label id="tag_{{ $tag->id }}">{{ $tag->name }}</label>
         </span>
         @endforeach
