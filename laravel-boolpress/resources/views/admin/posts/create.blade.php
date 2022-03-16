@@ -16,8 +16,8 @@
         </div>
 
         <div>
-            <label>Descrizione</label>
-            <textarea name="content" placeholder="inserisci una descrizione"></textarea>
+            <label>Contenuto</label>
+            <textarea name="content" placeholder="inizia a scrivere"></textarea>
         </div>
 
         <input type="submit" value="invia">

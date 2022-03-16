@@ -9,6 +9,22 @@
 <body>
 
     <h1>lista post</h1>
+
+    <a href="{{ route("admin.posts.create") }}">Aggiungi post</a>
+
+    @foreach ($posts as $post)
+    <div>
+        
+        {{ $post->title }}
+        <span><a href="{{ route("admin.posts.edit", $post->id) }}">Modifica</a></span>
+        
+
+
+
+    </div>  
+    
+    
+    @endforeach
     
 </body>
 </html>

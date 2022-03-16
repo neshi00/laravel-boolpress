@@ -55,9 +55,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show($id) {
+        $post = Post::findOrFail($id);
+
+        return view("admin.posts.show", compact("post"));
+        
     }
 
     /**
@@ -66,9 +68,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit($id) {
+
+        $post = Post::findOrFail($id);
+
+        return view("admin.posts.edit", compact("post"));
     }
 
     /**
@@ -78,9 +82,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $id) {
+        $data = $request->all();
+        $post = Post::findOrFail($id);
+
+        $post->update($data);
+
+        return redirect()->route("admin.posts.show", $id);
     }
 
     /**
