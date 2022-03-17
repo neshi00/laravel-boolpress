@@ -16,11 +16,9 @@
     <div>
         
         {{ $post->title }}
-        <span><a href="{{ route("admin.posts.edit", $post->id) }}">Modifica</a></span>
         
-
-
-
+        <span><a href="{{ route("admin.posts.show", $post->id) }}">Dettagli</a></span>
+    
     </div>  
     
     

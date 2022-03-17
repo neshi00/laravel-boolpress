@@ -8,13 +8,28 @@
 </head>
 <body>
 
-    <a href="{{ route("admin.posts.index") }}"></a>
+    <h1>Dettagli post</h1>
+
+    <a href="{{ route("admin.posts.index") }}">Indietro</a>
+    <hr>
 
     <div>
-        <p>{{ $post->title }}</p>
+        <span>{{ $post->title }}</span>
+        <span><a href="{{ route("admin.posts.edit", $post->id) }}">Modifica</a></span>
         <p>{{ $post->content }}</p>
 
+        <hr>
 
+        <p>Data creazione post: {{ $post->created_at }}</p>
+        <p>Ultima modifica post: {{ $post->updated_at }}</p>
+
+        <div>
+            <p>Nome Utente: {{ $post->user->name }}</p>
+
+
+        </div>
+
+        
     </div>
     
 </body>
