@@ -20,17 +20,15 @@
 
         <hr>
 
-        <p>Data creazione post: {{ $post->created_at }}</p>
-        <p>Ultima modifica post: {{ $post->updated_at }}</p>
+        @php
+            use Carbon\Carbon;
+        @endphp
 
-        <div>
-            <p>Nome Utente: {{ $post->user->name }}</p>
+        <p>Data creazione post: {{ $post->created_at->format("d/m/Y H:i") }}</p>
 
-
-        </div>
-
-        
-    </div>
-    
-</body>
+        @if($post->updated_at->diffForHumans(date(0)) <= 12)
+            <p>Ultima modifica post: {{ $post->updated_at->diffForHumans(date(0)) }}</p>
+            @else <p>Ultima modifica post: {{ $post->updated_at->format("d/m/Y H:i") }}</p>
+            
+        @endif
 </html>
