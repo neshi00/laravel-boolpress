@@ -3,11 +3,19 @@
 </template>
 
 <script>
-import ExampleComponentVue from "../components/ExampleComponent.vue";
-
 export default {
-    components: {
-        ExampleComponentVue,
+    components: {},
+    data() {
+        return {
+            posts: [],
+        };
+    },
+    methods: {
+        fetchPosts() {
+            axios.get("/api/posts").then((resp) => {
+                this.posts = resp.data;
+            });
+        },
     },
 };
 </script>
