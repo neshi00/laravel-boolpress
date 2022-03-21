@@ -1,12 +1,5 @@
 <template>
     <div>
-        <!-- <nav>
-            <a @click="$router.push({ name: 'contacts.index' })">test</a>
-            <router-link class="nav-link" :to="{ name: 'contacts.index' }">
-                TEST
-            </router-link>
-        </nav> -->
-
         <h1>Lista ultimi post</h1>
 
         <div class="card" v-for="post in posts" :key="post.id">
@@ -15,6 +8,9 @@
             </div>
             <p>{{ post.content }}</p>
             <p><strong>Autore: </strong>{{ post.user.name }}</p>
+            <router-link :to="{ name: 'posts.show', params: { post: post.id } }"
+                >Dettagli</router-link
+            >
         </div>
     </div>
 </template>

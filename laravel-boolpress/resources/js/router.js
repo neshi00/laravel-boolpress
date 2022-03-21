@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "./pages/Home.vue";
 import Contacts from "./pages/Contacts.vue";
+import PostShow from "./pages/posts/Show.vue";
 
 Vue.use(VueRouter);
 
@@ -26,7 +27,21 @@ const router = new VueRouter({
                 linkText: "Contatti",
             },
         },
+        {
+            path: "/posts/:post",
+            component: PostShow,
+            name: "posts.show",
+            meta: {
+                title: "Dettagli Post",
+            },
+        },
     ],
 });
+
+// router.beforeEach((to, from, next) => {
+//     document.title = to.meta.title;
+
+//     next();
+// });
 
 export default router;
