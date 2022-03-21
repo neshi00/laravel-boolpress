@@ -16,6 +16,8 @@ class PostController extends Controller
     public function index() {
         $posts = Post::all();
 
+        $posts->load("user","tags");
+
         return response()->json($posts);
     }
 
@@ -36,25 +38,25 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        
         $data = $request->validate([
             "title" => "required|min:5",
             "content" => "required|min:20",
             "tags" => "nullable"
         ]);
 
-        $post = new Post();
-        $post->fill($data);
+        $newPost = new Post();
+        $newPost->fill($data);
+        $newPost->user_id = 1;
 
-        $post->save();
+        $newPost->save();
 
         // $post->tags()->attach($data["tags"]);
 
         if(key_exists("tags", $data)) {
-            $post->tags()->attach($data["tags"]);
+            $newPost->tags()->attach($data["tags"]);
         }
 
-        return response()->json($post);
+        return response()->json($newPost);
 
         
     }
@@ -67,7 +69,6 @@ class PostController extends Controller
      */
     public function show($id) {
         $post = Post::findOrFail($id);
-
         $post->load("user");
 
         return response()->json($post);
