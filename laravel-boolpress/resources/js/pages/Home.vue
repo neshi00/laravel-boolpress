@@ -1,5 +1,12 @@
 <template>
     <div>
+        <!-- <nav>
+            <a @click="$router.push({ name: 'contacts.index' })">test</a>
+            <router-link class="nav-link" :to="{ name: 'contacts.index' }">
+                TEST
+            </router-link>
+        </nav> -->
+
         <h1>Lista ultimi post</h1>
 
         <div class="card" v-for="post in posts" :key="post.id">

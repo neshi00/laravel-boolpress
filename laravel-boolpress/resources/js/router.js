@@ -6,16 +6,25 @@ import Contacts from "./pages/Contacts.vue";
 Vue.use(VueRouter);
 
 const router = new VueRouter({
+    mode: "history",
     routes: [
         {
-            path: "/",
+            path: "/home",
             component: Home,
             name: "home.index",
+            meta: {
+                title: "Homepage",
+                linkText: "Home",
+            },
         },
         {
             path: "/contacts",
             component: Contacts,
             name: "contacts.index",
+            meta: {
+                title: "Contatti",
+                linkText: "Contatti",
+            },
         },
     ],
 });
