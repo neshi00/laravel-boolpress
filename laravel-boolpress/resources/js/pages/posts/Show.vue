@@ -19,9 +19,14 @@ export default {
     },
     methods: {
         fetchPosts() {
-            axios.get("/api/posts/" + this.$route.params.post).then((resp) => {
-                this.post = resp.data;
-            });
+            axios
+                .get("/api/posts/" + this.$route.params.post)
+                .then((resp) => {
+                    this.post = resp.data;
+                })
+                .catch((er) => {
+                    this.$router.replace({ name: "error" });
+                });
         },
     },
     mounted() {
