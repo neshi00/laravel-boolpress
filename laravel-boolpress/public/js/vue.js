@@ -1908,6 +1908,8 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -1921,15 +1923,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-// import router from "../router";
+//
+//
+//
+//
+ // import router from "../router";
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      routes: []
+      routes: [],
+      user: null
     };
+  },
+  methods: {
+    fetchUser: function fetchUser() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/user").then(function (resp) {
+        _this.user = resp.data;
+      })["catch"](function (er) {
+        console.log("Utente non loggato");
+      });
+    }
   },
   mounted: function mounted() {
     this.routes = this.$router.getRoutes();
+    this.fetchUser();
   }
 });
 
@@ -3280,21 +3300,33 @@ var render = function () {
   return _c("div", [
     _c(
       "nav",
-      _vm._l(_vm.routes, function (route) {
-        return _c(
-          "div",
-          { key: route.path },
-          [
-            _c(
-              "router-link",
-              { staticClass: "nav-link", attrs: { to: route.path } },
-              [_vm._v(_vm._s(route.meta.linkText))]
-            ),
-          ],
-          1
-        )
-      }),
-      0
+      [
+        _vm._l(_vm.routes, function (route) {
+          return _c(
+            "div",
+            { key: route.path },
+            [
+              _c(
+                "router-link",
+                { staticClass: "nav-link", attrs: { to: route.path } },
+                [_vm._v(_vm._s(route.meta.linkText))]
+              ),
+            ],
+            1
+          )
+        }),
+        _vm._v(" "),
+        _c("div", [
+          !_vm.user
+            ? _c("a", { staticClass: "nav-link", attrs: { href: "/login" } }, [
+                _vm._v("Login"),
+              ])
+            : _c("a", { staticClass: "nav-link", attrs: { href: "/admin" } }, [
+                _vm._v(_vm._s(_vm.user.name)),
+              ]),
+        ]),
+      ],
+      2
     ),
   ])
 }
