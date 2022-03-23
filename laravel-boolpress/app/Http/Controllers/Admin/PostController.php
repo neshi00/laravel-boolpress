@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Post;
 use App\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -42,11 +44,19 @@ class PostController extends Controller
         $data = $request->validate([
             "title" => "required|min:5",
             "content" => "required|min:20",
-            "tags" => "nullable"
+            "tags" => "nullable",
+            "coverImg" => "nullable|image|max:500"
         ]);
+
+        dd($data);
 
         $post = new Post();
         $post->fill($data);
+        $post->user_id = Auth::user()->id;
+
+        if(key_exists("coverImg", $data )) {
+            $post->coverImg = Storage::put("postCovers", $data["coverImg"]); 
+        }
 
         $post->save();
 

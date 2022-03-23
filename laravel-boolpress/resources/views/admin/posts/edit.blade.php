@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <form action="{{ route("admin.posts.update", $post->id) }}" method="post">
+    <form action="{{ route("admin.posts.update", $post->id) }}" method="post" enctype="">
 
         @csrf
         @method("put")
@@ -18,6 +18,11 @@
             <input type="text" name="title" 
                 placeholder="Inserisci il titolo" 
                 value="{{ old('title', $post->title) }}">
+        </div>
+
+        <div>
+            <label>Immagine di copertina</label>
+            <input type="file" name="coverImg">
         </div>
 
         <div>

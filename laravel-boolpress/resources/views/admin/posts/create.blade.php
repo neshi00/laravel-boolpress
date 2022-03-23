@@ -7,12 +7,17 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="{{ route("admin.posts.store") }}" method="post">
+    <form action="{{ route("admin.posts.store") }}" method="post" enctype="multipart/form-data">
         @csrf
 
         <div>
             <label for="title">Titolo</label>
             <input type="text" name="title" placeholder="scrivi il titolo">
+        </div>
+
+        <div>
+            <label>Immagine di copertina</label>
+            <input type="file" name="coverImg">
         </div>
 
         <div>
